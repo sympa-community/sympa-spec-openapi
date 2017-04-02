@@ -22,14 +22,14 @@
         }, {
           "name" : "page_size",
           "in" : "query",
-          "description" : "Page number (pagination)",
+          "description" : "Page size (pagination)",
           "required" : false,
           "type" : "number",
           "format" : "integer"
         }, {
           "name" : "q",
           "in" : "query",
-          "description" : "Page number (pagination)",
+          "description" : "Use to ask filters and other",
           "required" : false,
           "type" : "number",
           "format" : "integer"
@@ -46,6 +46,26 @@
             }
           }
         }
+      },
+      "post" : {
+        "description" : "Create a `Group` object.",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "group",
+          "description" : "the `Group` to create.",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Group"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "a `Group` successfully created.",
+            "schema" : {
+              "$ref" : "#/definitions/Group"
+            }
+          }
+        }
       }
     },
     "/group/:id/" : {
@@ -58,6 +78,44 @@
             "schema" : {
               "$ref" : "#/definitions/Group"
             }
+          },
+          "404" : {
+            "description" : "a `Group` is not found"
+          }
+        }
+      },
+      "put" : {
+        "description" : "Modify a `Group` object.",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "group",
+          "description" : "the `Group` to modify.",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Group"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a `Group` successfully modified.",
+            "schema" : {
+              "$ref" : "#/definitions/Group"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "description" : "Deletes `Group` object.",
+        "parameters" : [ ],
+        "responses" : {
+          "204" : {
+            "description" : "a `Group` successfully deleted",
+            "schema" : {
+              "$ref" : "#/definitions/Group"
+            }
+          },
+          "404" : {
+            "description" : "a `Group` is not found"
           }
         }
       }
@@ -75,14 +133,14 @@
         }, {
           "name" : "page_size",
           "in" : "query",
-          "description" : "Page number (pagination)",
+          "description" : "Page size (pagination)",
           "required" : false,
           "type" : "number",
           "format" : "integer"
         }, {
           "name" : "q",
           "in" : "query",
-          "description" : "Page number (pagination)",
+          "description" : "Use to ask filters and other",
           "required" : false,
           "type" : "number",
           "format" : "integer"
@@ -132,14 +190,14 @@
         }, {
           "name" : "page_size",
           "in" : "query",
-          "description" : "Page number (pagination)",
+          "description" : "Page size (pagination)",
           "required" : false,
           "type" : "number",
           "format" : "integer"
         }, {
           "name" : "q",
           "in" : "query",
-          "description" : "Page number (pagination)",
+          "description" : "Use to ask filters and other",
           "required" : false,
           "type" : "number",
           "format" : "integer"
@@ -156,6 +214,26 @@
             }
           }
         }
+      },
+      "post" : {
+        "description" : "Create a `User` object.",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "user",
+          "description" : "the `User` to create.",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/User"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "a `User` successfully created.",
+            "schema" : {
+              "$ref" : "#/definitions/User"
+            }
+          }
+        }
       }
     },
     "/user/:id" : {
@@ -168,6 +246,44 @@
             "schema" : {
               "$ref" : "#/definitions/User"
             }
+          },
+          "404" : {
+            "description" : "a `User` is not found"
+          }
+        }
+      },
+      "put" : {
+        "description" : "Modify a `User` object.",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "user",
+          "description" : "the `User` to modify.",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/User"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a `User` successfully modified.",
+            "schema" : {
+              "$ref" : "#/definitions/User"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "description" : "Deletes `User` object.",
+        "parameters" : [ ],
+        "responses" : {
+          "204" : {
+            "description" : "a `User` successfully deleted",
+            "schema" : {
+              "$ref" : "#/definitions/User"
+            }
+          },
+          "404" : {
+            "description" : "a `User` is not found"
           }
         }
       }
@@ -185,14 +301,14 @@
         }, {
           "name" : "page_size",
           "in" : "query",
-          "description" : "Page number (pagination)",
+          "description" : "Page size (pagination)",
           "required" : false,
           "type" : "number",
           "format" : "integer"
         }, {
           "name" : "q",
           "in" : "query",
-          "description" : "Page number (pagination)",
+          "description" : "Use to ask filters and other",
           "required" : false,
           "type" : "number",
           "format" : "integer"
@@ -227,6 +343,26 @@
             }
           }
         }
+      },
+      "post" : {
+        "description" : "Create a `Thread` object.",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "thread",
+          "description" : "the `Thread` to create.",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Thread"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "a `Thread` successfully created.",
+            "schema" : {
+              "$ref" : "#/definitions/Thread"
+            }
+          }
+        }
       }
     },
     "/thread/:id" : {
@@ -239,6 +375,9 @@
             "schema" : {
               "$ref" : "#/definitions/Thread"
             }
+          },
+          "404" : {
+            "description" : "a `Thread` is not found"
           }
         }
       }
@@ -256,14 +395,14 @@
         }, {
           "name" : "page_size",
           "in" : "query",
-          "description" : "Page number (pagination)",
+          "description" : "Page size (pagination)",
           "required" : false,
           "type" : "number",
           "format" : "integer"
         }, {
           "name" : "q",
           "in" : "query",
-          "description" : "Page number (pagination)",
+          "description" : "Use to ask filters and other",
           "required" : false,
           "type" : "number",
           "format" : "integer"
@@ -294,6 +433,12 @@
           "type" : "integer"
         },
         "title" : {
+          "type" : "string"
+        },
+        "subject" : {
+          "type" : "string"
+        },
+        "description" : {
           "type" : "string"
         },
         "image" : {
@@ -376,7 +521,7 @@
     "PageSize" : {
       "name" : "page_size",
       "in" : "query",
-      "description" : "Page number (pagination)",
+      "description" : "Page size (pagination)",
       "required" : false,
       "type" : "number",
       "format" : "integer"
@@ -384,7 +529,7 @@
     "Query" : {
       "name" : "q",
       "in" : "query",
-      "description" : "Page number (pagination)",
+      "description" : "Use to ask filters and other",
       "required" : false,
       "type" : "number",
       "format" : "integer"
