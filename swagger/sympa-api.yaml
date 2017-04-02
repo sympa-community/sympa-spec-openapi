@@ -147,6 +147,10 @@ definitions:
         type: integer
       title:
         type: string
+      subject:
+        type: string
+      description:
+        type: string
       image:
         type: string
       mail:
