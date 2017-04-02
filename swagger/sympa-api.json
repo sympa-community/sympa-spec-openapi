@@ -1,0 +1,401 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0.0",
+    "title" : "Sympa API"
+  },
+  "host" : "api.sympa.com",
+  "basePath" : "/v1",
+  "schemes" : [ "https" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/groups/" : {
+      "get" : {
+        "description" : "Gets `Group` objects.",
+        "parameters" : [ {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Page number (pagination)",
+          "required" : false,
+          "type" : "number",
+          "format" : "integer"
+        }, {
+          "name" : "page_size",
+          "in" : "query",
+          "description" : "Page number (pagination)",
+          "required" : false,
+          "type" : "number",
+          "format" : "integer"
+        }, {
+          "name" : "q",
+          "in" : "query",
+          "description" : "Page number (pagination)",
+          "required" : false,
+          "type" : "number",
+          "format" : "integer"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful response",
+            "schema" : {
+              "type" : "array",
+              "title" : "ArrayOfGroups",
+              "items" : {
+                "$ref" : "#/definitions/Group"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/group/:id/" : {
+      "get" : {
+        "description" : "Gets `Group` object.",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful response",
+            "schema" : {
+              "$ref" : "#/definitions/Group"
+            }
+          }
+        }
+      }
+    },
+    "/group/:id/users/" : {
+      "get" : {
+        "description" : "Gets `User` objects of a `Group`.\nUse `Query` to request `User` by role.\n",
+        "parameters" : [ {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Page number (pagination)",
+          "required" : false,
+          "type" : "number",
+          "format" : "integer"
+        }, {
+          "name" : "page_size",
+          "in" : "query",
+          "description" : "Page number (pagination)",
+          "required" : false,
+          "type" : "number",
+          "format" : "integer"
+        }, {
+          "name" : "q",
+          "in" : "query",
+          "description" : "Page number (pagination)",
+          "required" : false,
+          "type" : "number",
+          "format" : "integer"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful response",
+            "schema" : {
+              "type" : "array",
+              "title" : "ArrayOfUsers",
+              "items" : {
+                "$ref" : "#/definitions/User"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/group/:id/threads/" : {
+      "get" : {
+        "description" : "Gets `Thread` objects of a `Group`.",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful response",
+            "schema" : {
+              "type" : "array",
+              "title" : "ArrayOfThreads",
+              "items" : {
+                "$ref" : "#/definitions/Thread"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/" : {
+      "get" : {
+        "description" : "Gets `User` objects.",
+        "parameters" : [ {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Page number (pagination)",
+          "required" : false,
+          "type" : "number",
+          "format" : "integer"
+        }, {
+          "name" : "page_size",
+          "in" : "query",
+          "description" : "Page number (pagination)",
+          "required" : false,
+          "type" : "number",
+          "format" : "integer"
+        }, {
+          "name" : "q",
+          "in" : "query",
+          "description" : "Page number (pagination)",
+          "required" : false,
+          "type" : "number",
+          "format" : "integer"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful response",
+            "schema" : {
+              "type" : "array",
+              "title" : "ArrayOfUsers",
+              "items" : {
+                "$ref" : "#/definitions/User"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/:id" : {
+      "get" : {
+        "description" : "Gets `User` object.",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful response",
+            "schema" : {
+              "$ref" : "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/user/:id/groups/" : {
+      "get" : {
+        "description" : "Gets `Group` objects.\nUse `Query` to request favorites or subscribed groups\n",
+        "parameters" : [ {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Page number (pagination)",
+          "required" : false,
+          "type" : "number",
+          "format" : "integer"
+        }, {
+          "name" : "page_size",
+          "in" : "query",
+          "description" : "Page number (pagination)",
+          "required" : false,
+          "type" : "number",
+          "format" : "integer"
+        }, {
+          "name" : "q",
+          "in" : "query",
+          "description" : "Page number (pagination)",
+          "required" : false,
+          "type" : "number",
+          "format" : "integer"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful response",
+            "schema" : {
+              "type" : "array",
+              "title" : "ArrayOfGroups",
+              "items" : {
+                "$ref" : "#/definitions/Group"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/threads/" : {
+      "get" : {
+        "description" : "Gets `Thread` object.",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful response",
+            "schema" : {
+              "type" : "array",
+              "title" : "ArrayOfThreads",
+              "items" : {
+                "$ref" : "#/definitions/Thread"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/thread/:id" : {
+      "get" : {
+        "description" : "Gets `Thread` object.",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful response",
+            "schema" : {
+              "$ref" : "#/definitions/Thread"
+            }
+          }
+        }
+      }
+    },
+    "/thread/:id/users/" : {
+      "get" : {
+        "description" : "Gets `User` objects of a `Thread`. So you can get contributors\n",
+        "parameters" : [ {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Page number (pagination)",
+          "required" : false,
+          "type" : "number",
+          "format" : "integer"
+        }, {
+          "name" : "page_size",
+          "in" : "query",
+          "description" : "Page number (pagination)",
+          "required" : false,
+          "type" : "number",
+          "format" : "integer"
+        }, {
+          "name" : "q",
+          "in" : "query",
+          "description" : "Page number (pagination)",
+          "required" : false,
+          "type" : "number",
+          "format" : "integer"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful response",
+            "schema" : {
+              "type" : "array",
+              "title" : "ArrayOfUsers",
+              "items" : {
+                "$ref" : "#/definitions/User"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Group" : {
+      "required" : [ "id", "self" ],
+      "properties" : {
+        "self" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "integer"
+        },
+        "title" : {
+          "type" : "string"
+        },
+        "image" : {
+          "type" : "string"
+        },
+        "mail" : {
+          "type" : "string"
+        },
+        "tags" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "title" : "Tag"
+          }
+        }
+      }
+    },
+    "Thread" : {
+      "required" : [ "id", "self" ],
+      "properties" : {
+        "self" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "integer"
+        },
+        "subject" : {
+          "type" : "string"
+        },
+        "replies" : {
+          "type" : "integer"
+        },
+        "activity" : {
+          "type" : "string"
+        },
+        "tags" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "title" : "Tag"
+          }
+        }
+      }
+    },
+    "User" : {
+      "required" : [ "id", "self" ],
+      "properties" : {
+        "self" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "integer"
+        },
+        "image" : {
+          "type" : "string"
+        },
+        "mail" : {
+          "type" : "string"
+        },
+        "last_name" : {
+          "type" : "string"
+        },
+        "first_name" : {
+          "type" : "string"
+        },
+        "birth_date" : {
+          "type" : "string"
+        },
+        "roles" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "title" : "Role"
+          }
+        }
+      }
+    }
+  },
+  "parameters" : {
+    "PageSize" : {
+      "name" : "page_size",
+      "in" : "query",
+      "description" : "Page number (pagination)",
+      "required" : false,
+      "type" : "number",
+      "format" : "integer"
+    },
+    "Query" : {
+      "name" : "q",
+      "in" : "query",
+      "description" : "Page number (pagination)",
+      "required" : false,
+      "type" : "number",
+      "format" : "integer"
+    },
+    "Page" : {
+      "name" : "page",
+      "in" : "query",
+      "description" : "Page number (pagination)",
+      "required" : false,
+      "type" : "number",
+      "format" : "integer"
+    }
+  }
+}
