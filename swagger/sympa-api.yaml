@@ -24,12 +24,49 @@ paths:
             type: array
             items:
               $ref: "#/definitions/Group"
+    post:
+      description: Create a `Group` object.
+      parameters:
+        - name: group
+          in: body
+          description: the `Group` to create.
+          schema:
+            $ref: "#/definitions/Group"
+      responses:
+        201:
+          description: `Group` successfully created.
+          schema:
+            $ref: "#/definitions/Group"
   /group/:id/:
     get:
       description: Gets `Group` object.
       responses:
         200:
           description: Successful response
+          schema:
+            $ref: "#/definitions/Group"
+        404:
+          description: `Group` is not found
+    delete:
+      description: Deletes `Group` object.
+      responses:
+        204:
+          description: `Group` successfully deleted
+          schema:
+            $ref: "#/definitions/Group"
+        404:
+          description: `Group` is not found
+    put:
+      description: Modify a `Group` object.
+      parameters:
+        - name: group
+          in: body
+          description: the `Group` to modify.
+          schema:
+            $ref: "#/definitions/Group"
+      responses:
+        200:
+          description: `Group` successfully modified.
           schema:
             $ref: "#/definitions/Group"
   /group/:id/users/:
@@ -75,12 +112,44 @@ paths:
             type: array
             items:
               $ref: "#/definitions/User"
+      post:
+        description: Create a `User` object.
+        parameters:
+          - name: user
+            in: body
+            description: the `User` to create.
+            schema:
+              $ref: "#/definitions/User"
   /user/:id:
     get:
       description: Gets `User` object.
       responses:
         200:
           description: Successful response
+          schema:
+            $ref: "#/definitions/User"
+        404:
+          description: `User` is not found
+    delete:
+      description: Deletes `User` object.
+      responses:
+        204:
+          description: `User` successfully deleted
+          schema:
+            $ref: "#/definitions/User"
+        404:
+          description: `User` is not found
+    put:
+      description: Modify a `User` object.
+      parameters:
+        - name: user
+          in: body
+          description: the `User` to modify.
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        200:
+          description: `User` successfully modified.
           schema:
             $ref: "#/definitions/User"
   /user/:id/groups/:
@@ -111,6 +180,14 @@ paths:
             type: array
             items:
               $ref: "#/definitions/Thread"
+      post:
+        description: Create a `Thread` object.
+        parameters:
+          - name: thread
+            in: body
+            description: the `Thread` to create.
+            schema:
+              $ref: "#/definitions/Thread"
   /thread/:id:
     get:
       description: Gets `Thread` object.
@@ -119,6 +196,8 @@ paths:
           description: Successful response
           schema:
             $ref: "#/definitions/Thread"
+        404:
+          description: `Thread` is not found
   /thread/:id/users/:
     get:
       description: |
