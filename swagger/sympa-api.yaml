@@ -1,0 +1,155 @@
+swagger: '2.0'
+info:
+  version: "1.0.0"
+  title: Sympa API
+host: "api.sympa.com"
+schemes:
+  - "https"
+basePath: '/v1'
+produces:
+  - "application/json"
+paths:
+  /:domain_name/groups/:
+    get:
+      description: |
+        Gets `Group` objects.
+      parameters:
+        -
+          name: page
+          in: query
+          description: Page number (pagination)
+          required: false
+          type: number
+          format: integer
+        -
+          name: page_size
+          in: query
+          description: Page number (pagination)
+          required: false
+          type: number
+          format: integer
+        -
+          name: q
+          in: query
+          description: Page number (pagination)
+          required: false
+          type: number
+          format: integer
+      responses:
+        200:
+          description: Successful response
+          schema:
+            title: ArrayOfGroups
+            type: array
+            items:
+              $ref: "#/definitions/Group"
+
+  /:domain_name/group/:id/:
+    get:
+      description: |
+        Gets `Group` object.
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: "#/definitions/Group"
+
+  /:domain_name/group/:id/users/:
+    get:
+      description: |
+        Gets `User` objects from a `Group`.
+      parameters:
+        -
+          name: page
+          in: query
+          description: Page number (pagination)
+          required: false
+          type: number
+          format: integer
+        -
+          name: page_size
+          in: query
+          description: Page number (pagination)
+          required: false
+          type: number
+          format: integer
+        -
+          name: q
+          in: query
+          description: Page number (pagination)
+          required: false
+          type: number
+          format: integer
+      responses:
+        200:
+          description: Successful response
+          schema:
+            title: ArrayOfUsers
+            type: array
+            items:
+              $ref: "#/definitions/User"
+
+
+
+definitions:
+  Group:
+    required:
+      - id
+    properties:
+      id:
+        type: integer
+      title:
+        type: string
+      image:
+        type: string
+      mail:
+        type: string
+      tags:
+        type: array
+        items:
+          title: Tag
+          type: string
+      thread:
+        type: array
+        items:
+          $ref: "#/definitions/Thread"
+
+  Thread:
+    required:
+      - id
+    properties:
+      id:
+        type: integer
+      subject:
+        type: string
+      contributors:
+        type: array
+        items:
+          $ref: "#/definitions/User"
+      replies:
+        type: integer
+      activity:
+        type: string
+
+
+  User:
+    required:
+      - id
+    properties:
+      id:
+        type: integer
+      image:
+        type: string
+      mail:
+        type: string
+      last_name:
+        type: string
+      first_name:
+        type: string
+      birth_date:
+        type: string
+      roles:
+        type: array
+        items:
+          title: Role
+          type: string
