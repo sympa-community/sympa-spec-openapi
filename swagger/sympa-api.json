@@ -380,6 +380,41 @@
             "description" : "a `Thread` is not found"
           }
         }
+      },
+      "put" : {
+        "description" : "Modify a `Thread` object.",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "thread",
+          "description" : "the `Thread` to modify.",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Thread"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a `Thread` successfully modified.",
+            "schema" : {
+              "$ref" : "#/definitions/Thread"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "description" : "Deletes `Thread` object.",
+        "parameters" : [ ],
+        "responses" : {
+          "204" : {
+            "description" : "a `Thread` successfully deleted",
+            "schema" : {
+              "$ref" : "#/definitions/Thread"
+            }
+          },
+          "404" : {
+            "description" : "a `Thread` is not found"
+          }
+        }
       }
     },
     "/thread/:id/users/" : {

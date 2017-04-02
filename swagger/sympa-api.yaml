@@ -208,6 +208,28 @@ paths:
             $ref: "#/definitions/Thread"
         404:
           description: a `Thread` is not found
+    delete:
+      description: Deletes `Thread` object.
+      responses:
+        204:
+          description: a `Thread` successfully deleted
+          schema:
+            $ref: "#/definitions/Thread"
+        404:
+          description: a `Thread` is not found
+    put:
+      description: Modify a `Thread` object.
+      parameters:
+        - name: thread
+          in: body
+          description: the `Thread` to modify.
+          schema:
+            $ref: "#/definitions/Thread"
+      responses:
+        200:
+          description: a `Thread` successfully modified.
+          schema:
+            $ref: "#/definitions/Thread"
   /thread/:id/users/:
     get:
       description: |
