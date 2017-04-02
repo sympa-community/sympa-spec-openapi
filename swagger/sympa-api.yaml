@@ -2,39 +2,20 @@ swagger: '2.0'
 info:
   version: "1.0.0"
   title: Sympa API
-host: "api.sympa.com"
+host: "api.sympa.com" # an api for each robot
 schemes:
   - "https"
 basePath: '/v1'
 produces:
   - "application/json"
 paths:
-  /:domain_name/groups/:
+  /groups/:
     get:
-      description: |
-        Gets `Group` objects.
+      description: Gets `Group` objects.
       parameters:
-        -
-          name: page
-          in: query
-          description: Page number (pagination)
-          required: false
-          type: number
-          format: integer
-        -
-          name: page_size
-          in: query
-          description: Page number (pagination)
-          required: false
-          type: number
-          format: integer
-        -
-          name: q
-          in: query
-          description: Page number (pagination)
-          required: false
-          type: number
-          format: integer
+        - $ref: "#/parameters/Page"
+        - $ref: "#/parameters/PageSize"
+        - $ref: "#/parameters/Query"
       responses:
         200:
           description: Successful response
@@ -43,43 +24,23 @@ paths:
             type: array
             items:
               $ref: "#/definitions/Group"
-
-  /:domain_name/group/:id/:
+  /group/:id/:
     get:
-      description: |
-        Gets `Group` object.
+      description: Gets `Group` object.
       responses:
         200:
           description: Successful response
           schema:
             $ref: "#/definitions/Group"
-
-  /:domain_name/group/:id/users/:
+  /group/:id/users/:
     get:
       description: |
-        Gets `User` objects from a `Group`.
+        Gets `User` objects of a `Group`.
+        Use `Query` to request `User` by role.
       parameters:
-        -
-          name: page
-          in: query
-          description: Page number (pagination)
-          required: false
-          type: number
-          format: integer
-        -
-          name: page_size
-          in: query
-          description: Page number (pagination)
-          required: false
-          type: number
-          format: integer
-        -
-          name: q
-          in: query
-          description: Page number (pagination)
-          required: false
-          type: number
-          format: integer
+        - $ref: "#/parameters/Page"
+        - $ref: "#/parameters/PageSize"
+        - $ref: "#/parameters/Query"
       responses:
         200:
           description: Successful response
@@ -88,14 +49,100 @@ paths:
             type: array
             items:
               $ref: "#/definitions/User"
-
-
-
+  /group/:id/threads/:
+    get:
+      description: Gets `Thread` objects of a `Group`.
+      responses:
+        200:
+          description: Successful response
+          schema:
+            title: ArrayOfThreads
+            type: array
+            items:
+              $ref: "#/definitions/Thread"
+  /users/:
+    get:
+      description: Gets `User` objects.
+      parameters:
+        - $ref: "#/parameters/Page"
+        - $ref: "#/parameters/PageSize"
+        - $ref: "#/parameters/Query"
+      responses:
+        200:
+          description: Successful response
+          schema:
+            title: ArrayOfUsers
+            type: array
+            items:
+              $ref: "#/definitions/User"
+  /user/:id:
+    get:
+      description: Gets `User` object.
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: "#/definitions/User"
+  /user/:id/groups/:
+    get:
+      description: |
+        Gets `Group` objects.
+        Use `Query` to request favorites or subscribed groups
+      parameters:
+        - $ref: "#/parameters/Page"
+        - $ref: "#/parameters/PageSize"
+        - $ref: "#/parameters/Query"
+      responses:
+        200:
+          description: Successful response
+          schema:
+            title: ArrayOfGroups
+            type: array
+            items:
+              $ref: "#/definitions/Group"
+  /threads/:
+    get:
+      description: Gets `Thread` object.
+      responses:
+        200:
+          description: Successful response
+          schema:
+            title: ArrayOfThreads
+            type: array
+            items:
+              $ref: "#/definitions/Thread"
+  /thread/:id:
+    get:
+      description: Gets `Thread` object.
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: "#/definitions/Thread"
+  /thread/:id/users/:
+    get:
+      description: |
+        Gets `User` objects of a `Thread`. So you can get contributors
+      parameters:
+        - $ref: "#/parameters/Page"
+        - $ref: "#/parameters/PageSize"
+        - $ref: "#/parameters/Query"
+      responses:
+        200:
+          description: Successful response
+          schema:
+            title: ArrayOfUsers
+            type: array
+            items:
+              $ref: "#/definitions/User"
 definitions:
   Group:
     required:
       - id
+      - self
     properties:
+      self: # the unique url of this ressource
+        type: string
       id:
         type: integer
       title:
@@ -109,33 +156,33 @@ definitions:
         items:
           title: Tag
           type: string
-      thread:
-        type: array
-        items:
-          $ref: "#/definitions/Thread"
-
   Thread:
     required:
       - id
+      - self
     properties:
+      self: # the unique url of this ressource
+        type: string
       id:
         type: integer
       subject:
         type: string
-      contributors:
-        type: array
-        items:
-          $ref: "#/definitions/User"
       replies:
         type: integer
       activity:
         type: string
-
-
+      tags:
+        type: array
+        items:
+          title: Tag
+          type: string
   User:
     required:
       - id
+      - self
     properties:
+      self: # the unique url of this ressource
+        type: string
       id:
         type: integer
       image:
@@ -153,3 +200,25 @@ definitions:
         items:
           title: Role
           type: string
+parameters:
+  Page:
+    name: page
+    in: query
+    description: Page number (pagination)
+    required: false
+    type: number
+    format: integer
+  PageSize:
+    name: page_size
+    in: query
+    description: Page number (pagination)
+    required: false
+    type: number
+    format: integer
+  Query:
+    name: q
+    in: query
+    description: Page number (pagination)
+    required: false
+    type: number
+    format: integer
