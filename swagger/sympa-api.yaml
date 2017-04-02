@@ -211,14 +211,14 @@ parameters:
   PageSize:
     name: page_size
     in: query
-    description: Page number (pagination)
+    description: Page size (pagination)
     required: false
     type: number
     format: integer
   Query:
     name: q
     in: query
-    description: Page number (pagination)
+    description: Use to ask filters and other
     required: false
     type: number
     format: integer
